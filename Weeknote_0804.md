@@ -19,7 +19,7 @@
 ?Distributions
 ```
 
-會跳像下面這樣的頁面，有完整的列表。
+會跳出像下面這樣的頁面，有完整的列表。
 
 > ## Distributions in the stats package
 >
