@@ -1,6 +1,6 @@
 ## Crash Course to Statistics
 
-Last update May, 2015 | Contact @ccwang002 for misuse or mistakes
+Last update Aug, 2015 | Contact @ccwang002 for misuse or mistakes
 
 
 ### 參考書籍
