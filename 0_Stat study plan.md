@@ -7,7 +7,7 @@ Last update Aug, 2015 | Contact @ccwang002 for misuse or mistakes
 
 陳旭昇（2015）。[統計學：應用與進階(三版)](http://www.books.com.tw/products/0010672198)。
 
-Problem、Quiz 內容請訪問當年助教曾中信博士維護的[課程網頁](https://sites.google.com/site/2012ntueconstat/)，裡面的題目跟解答都寫得很完整。
+Problem、Quiz 內容請訪問 2012 年助教曾中信博士維護的[課程網頁](https://sites.google.com/site/2012ntueconstat/)，裡面的題目跟解答都寫得很完整。
 
 
 ### 進度規劃
