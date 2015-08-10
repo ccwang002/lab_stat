@@ -1,0 +1,154 @@
+---
+title: "Weeknote 0811"
+output: html_document
+---
+
+## Monty Hall problem
+
+> Don't trust the math? Simulate it!
+
+既然門後面有羊有車（車比較好），先建立一個 `factor` 變數來記錄 3 扇門後面分別是什麼。
+
+```{r}
+doors <- factor(c("Car", "Sheep", "Sheep"), levels = c("Sheep", "Car"))
+doors
+```
+
+### Factor 常用方式
+
+```{r}
+levels(doors)  # 看總共有幾個類別
+as.numeric(doors)  # 轉成每個類別實際對應的整數
+as.character(doors)  # 以字串表示
+```
+
+### 抽樣
+
+```{r}
+set.seed(9527)  # 確保每次亂數的結果都相同
+sample(doors)  # 打亂門的位置
+sample(doors)  # 打亂門的位置
+```
+
+### 設計遊戲流程
+
+我們假設受試者一開始一定開第一道門，但主持人的動作是無法被決定的，會受到實際上門的分佈而改變。
+把主持人的選擇寫成一個 function。它接受一組門的情形，回傳主持人要打開哪扇門。
+
+```{r}
+host_open_door <- function(doors) {
+    if (doors[[1]] == 'Sheep') {
+        # 受試者選到的門後面是羊，那只能開剩下一扇羊的門
+        return(ifelse(doors[[2]] == 'Sheep', 2, 3))
+    } else {
+        # 受試者選到的門後面是車，那就隨便開一扇剩下的
+        return(sample(2:3, size=1))
+    }
+}
+```
+
+驗証看看
+
+```{r}
+host_open_door(c("Sheep", "Sheep", "Car"))   # 一定回傳 2
+host_open_door(c("Sheep", "Car", "Sheep"))   # 一定回傳 3
+host_open_door(c("Car", "Sheep", "Sheep"))   # 回傳 2、3 不一定
+```
+
+
+### 模擬遊戲過程
+
+Game start! 幫大家複習流程：
+
+1. 產生一組門的組合
+2. 受試者永遠選第 1 扇門
+3. 主持人打開第 2、3 其中一扇門
+4. 受試者會有個策略，要「換」還是「不要換」
+
+如果受試者的策略是「換」：
+
+```{r}
+cur_doors <- sample(doors)
+attendee_choice <- 1
+host_choice <- host_open_door(cur_doors)
+final_choice <- (1:3)[-c(host_choice, attendee_choice)]
+# 或者用 setdiff(1:3, c(host_choice, attendee_choice) 也可以
+
+if (cur_doors[final_choice] == 'Car') {
+    cat('You won a car!\n')
+} else {
+    cat('You loser!\n')
+} 
+```
+
+統計一種觀點，就是一個對重覆事件的觀察。所以我只要做很多次，我就能知道母體的事件機率分佈了。
+
+### 重覆試驗
+
+把上面的流程寫成一個 function，門後有車就回傳 1。
+
+```{r}
+play_game_change_door <- function(...) {
+    cur_doors <- sample(doors)
+    attendee_choice <- 1
+    host_choice <- host_open_door(cur_doors)
+    final_choice <- (1:3)[-c(host_choice, attendee_choice)]
+    return(ifelse(cur_doors[final_choice] == 'Car', 1, 0)) 
+}
+```
+
+我們先模擬個 1000 遍。在 R 可以用 for 迴圈來做到，但想直接教大家比較「現代」的做法
+使用 plyr 來做 *apply 的操作。
+
+```{r}
+library(plyr)   # 需要安裝 plyr 套件 install.packages("plyr")
+```
+
+```{r, eval=FALSE}
+game_results <- aaply(1:1000, 1, play_game_change_door, .progress = "time")
+```
+
+```{r, echo=FALSE}
+game_results <- aaply(1:1000, 1, play_game_change_door)
+```
+
+```{r}
+table(game_results)
+cat(sum(game_results == 1), 'out of', length(game_results),'games win')
+```
+
+
+## 補充
+
+### plyr 用法 - aaply
+
+plyr 提供的函式都是 xxply：
+
+- aaply、adply、a_ply
+- daply、ddply、d_ply
+- maply、mdply、m_ply
+
+`a` 就是 matrix 或 vector；`d` 是 data.frame；`_` 表示不會有結果輸出。今天先講第一排：
+
+```{r}
+# aXply, X = 'a', 'd', '_'
+#
+# aXply(.data,        # 要 loop 資料                       
+#       .margins,     # (matrix) 按 row 還是 column 去 loop
+#       .fun,         # loop 的時候呼叫哪個 function，
+#                     # 會把 loop 到的東西當作 function 的參數傳入
+#       ...)
+aaply(1:10, 1, function(x){2 * x + 1})
+a_ply(letters[1:5], 1, print)
+```
+
+
+
+### 還沒有講到的統計檢定
+
+```{r}
+binom.test(sum(game_results == 1), length(game_results), p=2/3)
+```
+
+
+
