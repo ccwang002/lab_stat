@@ -12,16 +12,27 @@ Problem、Quiz 內容請訪問 2012 年助教曾中信博士維護的[課程網�
 
 ### 進度規劃
 
+用書的階段：
+
 | Week | Book Chapter | Description | Lecture | Problem | Quiz | R Note |
 | ----- | -------------| ----------- | ------- | ------- | ---- | ------ |
 | Aug 4  | Ch 1, 2, 3 | 統計概論、機率模型、隨機變數 | Lec 1, 2 | P 1, 2 | Q 1 | [N 1] |
 | Aug 11 | Ch 3       | 隨機變數                     | Lec 2    | P 2, 3 | Q 2 | - |
 | Aug 18 | Ch 4       | 多變量隨機變數               | Lec 3    | P 4, 5 | -   | - |
-| Aug 25 | Ch 5       | 常用離散隨機變數             | Lec 4    | P 6, 7 | Q 3 | - |
-| Sep 1  | Ch 6       | 常用連續隨機變數             | Lec 5    | P 8, 9 | Q 4 | - |
-| Sep 8  | Ch 7, 8(, 9) | 隨機樣本、敘述統計、漸近理論、漸近分配（、多變量常態分配） | Lec 6, 7  | P 10, 11(, 12, 13) | Q 5 | - |
-| Sep 15 | Ch 10, 11  | 古典統計、點估計             | Lec 8     | P 14  | Q 6 | - |
-| Sep 22 | Ch 12     | 區間估計、假設檢定           | Lec 9, 10 | P 15  | Q 7 | - |
+| Aug 25 | Ch 5, 6    | 常用離散、連續隨機變數             | Lec 4, 5    | P 6, 7, 8, 9 | Q 3, 4 | - |
+| Sep 1  | Ch 7, 8(, 9), 10, 11 | 隨機樣本、敘述統計、漸近理論、漸近分配（、多變量常態分配）、古典統計、點估計 | Lec 6, 7, 8  | P 10, 11(, 12, 13), 14 | Q 5, 6 | - |
+| Sep 8  | Ch 12, 13  | 區間估計、假設檢定   | Lec 9, 10 | P 15  | Q 7 | - |
+| Sep 15 | Ch (14, )15, 16 | 簡單迴歸分析、估計與檢定 | - | - | - | - |
+| Sep 22 | Ch 17 | 多元迴歸分析、Logistic regression | [CC Rev 14][rev-14] | - | - | - |
+
+沒有書的階段…
+
+| Week   | Topic             | Description        | Note   |
+| ------ | ----------------- | ------------------ | ------ |
+| Sep 29 | Survival Analysis | Kaplan-Meier curve, log-rank test, harzard ratio, Cox regression | [CC Rev 12][rev-12] | 
+| Oct  6 | Categorical Data  | χ2 test, odds ratio | [CC Rev 8][rev-8] |
+| Oct 13 | Misc.             | ROC, PCA, ... TBD | [CC Rev 13][rev-13]
+
 
 [N 1]: https://gist.github.com/ccwang002/b98193559c354e1b65d6#file-weeknote_0804-md
 
@@ -49,7 +60,7 @@ Problem、Quiz 內容請訪問 2012 年助教曾中信博士維護的[課程網�
 | [8. Qualitative data – tests of association][rev-8]            | Chi-square (χ<sup>2</sup>) test, residuals, Fisher’s exact test, categorical data, test for trend, odds ratio    | Ch 15-17              |
 | [9. One-way analysis of variance (ANOVA)][rev-9]               | One-way ANOVA                                                                                                    | Ch 14                 |
 | [10. Further nonparametric methods][rev-10]\*                  | Kruskal-Wallis test, Friedman Test                                                                               |
-| [11. Assessing risk][rev-11]\*                                 | Relative risk, odds ratio, survival analysisa                                                                    |
+| [11. Assessing risk][rev-11]\*                                 | Relative risk, odds ratio, survival analysis                                                                    |
 | [12. Survival Analysis][rev-12]\*                              | Kaplan-Meier curve, log rank test, Cox hazard ratio                                                              |
 | [13. Receiver operating characteristic (ROC) curves][rev-13]\* | ROC curve, sensitivity, specificity                                                                              |
 | [14. Logistic regression][rev-14]\*                            | Bionomial distribution, logistic regression, maximum likelihood estimation (MLE), goodness of fit, R<sup>2</sup> |
